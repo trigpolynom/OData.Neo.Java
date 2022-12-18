@@ -1,9 +1,10 @@
 package org.odata.neo.java.core.Brokers.Expressions;
 
-import java.util.concurrent.FutureTask;
+import java.beans.Expression;
+import java.util.concurrent.Future;
 
 public interface ExpressionBroker {
 
-    <T> FutureTask<T> generateExpressionAsync(String expression);
+    public <T> Future<Expression> generateExpressionAsync(String expression);
     
 }
