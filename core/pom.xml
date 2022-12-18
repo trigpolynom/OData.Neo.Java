@@ -13,5 +13,41 @@
   <artifactId>core</artifactId>
   <name>core</name>
 
+  <dependencies>
+    <dependency>
+    <groupId>org.apache.commons</groupId>
+    <artifactId>commons-lang3</artifactId>
+    <version>3.12.0</version>
+  </dependency>
+  <dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-web-services</artifactId>
+	<version>3.0.0</version>
+  <exclusions>
+		<exclusion>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+		</exclusion>
+	</exclusions>
+</dependency>
+  </dependencies>
+
+  <profiles>
+	<profile>
+		<id>java11</id>
+		<activation>
+			<jdk>[11,)</jdk>
+		</activation>
+
+		<dependencies>
+			<dependency>
+				<groupId>org.glassfish.jaxb</groupId>
+				<artifactId>jaxb-runtime</artifactId>
+        <version>4.0.1</version>
+			</dependency>
+		</dependencies>
+	</profile>
+</profiles>
+
   
 </project>
