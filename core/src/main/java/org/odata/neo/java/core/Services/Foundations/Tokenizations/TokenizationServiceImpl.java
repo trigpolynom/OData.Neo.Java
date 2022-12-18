@@ -21,7 +21,7 @@ public class TokenizationServiceImpl implements TokenizationService {
         Boolean notSepChar = false;
 
         for (Character c : sepChars) {
-            if (sepChars.contains(c)) {
+            if (!sepChars.contains(c)) {
                 notSepChar = true;
             }
 
