@@ -1,38 +1,64 @@
 package org.odata.neo.java.core.Services.Foundations.Tokenizations;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 
 import org.apache.commons.lang3.StringUtils;
 import org.odata.neo.java.core.Models.Tokens.Token;
+import org.odata.neo.java.core.Models.Tokens.TokenType;
 
 public class TokenizationServiceImpl implements TokenizationService {
 
-    final Character[] separatorChars = new Character[] {
+    final char[] separatorChars = {
         '\'', ' ', '=', '\\' 
     };
 
-    public Token[] tokenize(String rawQuery) {
+    public List<Token> tokenize(String rawQuery) {
         try {
-            return 
+            return oTokenize(rawQuery, separatorChars);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        return null;
     }
 
-    private static Iterable<Token> oTokenize(String rawQuery, Character[] sepChars) {
+    private static List<Token> oTokenize(String rawQuery, char[] sepChars) {
         String remainingRawQuery = rawQuery;
-        Boolean notSepChar = false;
-
-        
+        TokenType oTokenType = null;
+        List<Token> tokenList = new ArrayList<>();
 
         while (remainingRawQuery.length() > 0) {
             String returnValue = remainingRawQuery;
             String nextRemainingValue = "";
 
-            Integer index = StringUtils.indexOfAny(sepChars, null)
+            Integer index = StringUtils.indexOfAny(remainingRawQuery, sepChars);
+
+            if (index != -1) {
+                int rangeIndex = getRangeIndex(index);
+                returnValue = remainingRawQuery.substring(0, rangeIndex);
+                nextRemainingValue = remainingRawQuery.substring(rangeIndex, remainingRawQuery.length());
+            }
+
+            remainingRawQuery = nextRemainingValue;
+
+            for (char c : sepChars) {
+                for (char k : returnValue.toCharArray()) {
+                    if (c == k) {
+                        oTokenType = TokenType.Separator;
+                    }
+                }
+            }
+
+            if(oTokenType != TokenType.Separator) {
+                oTokenType =TokenType.Word;
+            }
+            
+            tokenList.add(new Token(oTokenType, returnValue));
         }
+        return tokenList;
     }
 
-    private static Integer getRangeIndex(Integer index) {
+    private static int getRangeIndex(int index) {
         if (index > 0) {
             return index;
         }
@@ -41,3 +67,4 @@ public class TokenizationServiceImpl implements TokenizationService {
     }
     
 }
+
