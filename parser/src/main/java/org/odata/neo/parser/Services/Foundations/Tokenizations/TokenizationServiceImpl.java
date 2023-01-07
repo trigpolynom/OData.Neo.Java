@@ -1,11 +1,12 @@
-package org.odata.neo.core.Services.Foundations.Tokenizations;
+package org.odata.neo.parser.Services.Foundations.Tokenizations;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.odata.neo.core.Models.Tokens.Token;
-import org.odata.neo.core.Models.Tokens.TokenType;
+import org.odata.neo.parser.Models.Tokens.Token;
+import org.odata.neo.parser.Models.Tokens.TokenType;
 
 public class TokenizationServiceImpl implements TokenizationService {
 
@@ -69,4 +70,3 @@ public class TokenizationServiceImpl implements TokenizationService {
     }
     
 }
-
