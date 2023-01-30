@@ -1,8 +1,8 @@
-package org.odata.neo.core.Models.OTokens;
+package org.odata.neo.parser.Models.OTokens;
 
 import java.util.List;
 
-import org.odata.neo.core.Models.ProjectedTokens.ProjectedTokenType;
+import org.odata.neo.parser.Models.ProjectedTokens.ProjectedTokenType;
 
 public class OToken {
 

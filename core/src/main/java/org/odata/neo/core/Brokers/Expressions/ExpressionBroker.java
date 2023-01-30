@@ -1,10 +1,10 @@
-package org.odata.neo.core.Brokers.Expressions;
+// package org.odata.neo.core.Brokers.Expressions;
 
-import java.beans.Expression;
-import java.util.concurrent.Future;
+// import java.beans.Expression;
+// import java.util.concurrent.Future;
 
-public interface ExpressionBroker {
+// public interface ExpressionBroker {
 
-    public <T> Future<Expression> generateExpressionAsync(String expression);
+//     public <T> Future<Expression> generateExpressionAsync(String expression);
     
-}
+// }

@@ -1,6 +1,6 @@
-package org.odata.neo.core.Models.ProjectedTokens;
+package org.odata.neo.parser.Models.ProjectedTokens;
 
-import org.odata.neo.core.Models.Tokens.TokenType;
+import org.odata.neo.parser.Models.Tokens.TokenType;
 
 public class ProjectedToken {
 

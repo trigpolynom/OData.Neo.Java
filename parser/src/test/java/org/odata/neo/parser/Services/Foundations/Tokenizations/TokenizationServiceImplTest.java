@@ -8,8 +8,8 @@ import org.odata.neo.parser.Models.Tokens.Token;
 public class TokenizationServiceImplTest {
     
     @Test
-    void whenProvideQueryThenOTokenize() {
-        String inputQuery = "$select=Name";
+    void whenProvideQueryThenTokenize() {
+        String inputQuery = "http://www.example.com/odata/v1/$select=Name";
         TokenizationServiceImpl tokenizationService = new TokenizationServiceImpl();
         Iterable<Token> tokens = tokenizationService.tokenize(inputQuery);
 

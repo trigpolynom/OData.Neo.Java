@@ -1,4 +1,4 @@
-package org.odata.neo.core.Models.OTokens;
+package org.odata.neo.parser.Models.OTokens;
 
 public enum OTokenType {
 

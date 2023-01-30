@@ -1,4 +1,4 @@
-package org.odata.neo.core.Models.ProjectedTokens;
+package org.odata.neo.parser.Models.ProjectedTokens;
 
 public enum ProjectedTokenType {
 

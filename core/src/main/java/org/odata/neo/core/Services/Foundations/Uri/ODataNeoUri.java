@@ -9,6 +9,7 @@ public class ODataNeoUri {
     private static final URI metadataSegment = URI.create(ODataNeoConstants.URI_METADATA_SEGMENT);
     
     private URI serviceRoot;
+    
 
     
 
