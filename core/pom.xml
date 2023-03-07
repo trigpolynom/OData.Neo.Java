@@ -33,11 +33,6 @@
     </build>
 
   <dependencies>
-    <dependency>
-      <groupId>org.odata.neo.parser</groupId>
-      <artifactId>parser</artifactId>
-      <version>${odata.neo.parser.version}</version>
-    </dependency>
   <dependency>
 	<groupId>org.springframework.boot</groupId>
 	<artifactId>spring-boot-starter-web-services</artifactId>
