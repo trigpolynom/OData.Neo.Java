@@ -14,6 +14,7 @@ public class ParseResult {
         this.errorMessages = errorMessages;
     }
 
+
     public boolean isSuccess() {
         return success;
     }
