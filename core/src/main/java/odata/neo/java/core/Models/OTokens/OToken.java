@@ -6,6 +6,17 @@ import odata.neo.java.core.Models.ProjectedTokens.ProjectedTokenType;
 
 public class OToken {
 
+    public OToken(String rawValue, OTokenType oTokenType, ProjectedTokenType projectedTokenType,
+            List<OToken> children) {
+        this.rawValue = rawValue;
+        this.oTokenType = oTokenType;
+        this.projectedTokenType = projectedTokenType;
+        this.children = children;
+    }
+
+    public OToken() {
+    }
+
     public String rawValue;
     public OTokenType oTokenType;
     public ProjectedTokenType projectedTokenType;

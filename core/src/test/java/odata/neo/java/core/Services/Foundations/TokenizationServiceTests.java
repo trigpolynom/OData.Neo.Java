@@ -13,11 +13,11 @@ import odata.neo.java.core.Services.Foundations.Tokenizations.TokenizationServic
 public class TokenizationServiceTests {
 
     @Test
-    void simpleTest() throws NullOTokenQueryException {
+    void simpleSelectTest() throws NullOTokenQueryException {
 
         TokenizationService tokenizationService = new TokenizationService();
         
-        String simpleQuery = "$filter=id eq '1234'&$select=id";
+        String simpleQuery = "&$select=id,name,esmerelda";
 
         Token[] tokens = tokenizationService.tokenize(simpleQuery);
 
