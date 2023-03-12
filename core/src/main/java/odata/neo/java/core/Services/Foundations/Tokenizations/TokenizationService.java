@@ -1,9 +1,7 @@
 package odata.neo.java.core.Services.Foundations.Tokenizations;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -11,7 +9,7 @@ import odata.neo.java.core.Models.Tokens.Token;
 import odata.neo.java.core.Models.Tokens.TokenType;
 import odata.neo.java.core.Models.Tokens.Exceptions.NullOTokenQueryException;
 
-public class TokenizationService implements ITokenizationService {
+public class TokenizationService extends ITokenizationService {
     
     
     private final char[] separatorChars = new char[] { '\'', ' ', '=', '\\' };
@@ -68,12 +66,5 @@ public class TokenizationService implements ITokenizationService {
         return 1;
     }
     
-
-
-    private void validateOTokenQuery(String rawQuery) throws NullOTokenQueryException {
-        if (rawQuery == null) {
-            throw new NullOTokenQueryException("null token");
-        }
-    }
 
 }
