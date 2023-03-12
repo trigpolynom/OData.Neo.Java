@@ -10,7 +10,7 @@ import odata.neo.java.core.Models.OTokens.OTokenType;
 import odata.neo.java.core.Models.OTokens.Exceptions.FailedOTokenServiceException;
 import odata.neo.java.core.Models.ProjectedTokens.ProjectedTokenType;
 
-public class OTokenizationService extends IOTokenizationService {
+public class OTokenizationService extends BaseOTokenizationService {
 
     @Override
     public OToken oTokenize(OToken[] oTokens) throws FailedOTokenServiceException {

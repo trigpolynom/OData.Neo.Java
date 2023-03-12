@@ -4,7 +4,7 @@ import odata.neo.java.core.Models.ProjectedTokens.ProjectedToken;
 import odata.neo.java.core.Models.ProjectedTokens.ProjectedTokenType;
 import odata.neo.java.core.Models.ProjectedTokens.Exceptions.FailedProjectedTokenServiceException;
 
-public class ProjectionService extends IProjectionService {
+public class ProjectionService extends BaseProjectionService {
 
     public ProjectedToken[] projectTokens(ProjectedToken[] projectedTokens) throws FailedProjectedTokenServiceException {
         try {

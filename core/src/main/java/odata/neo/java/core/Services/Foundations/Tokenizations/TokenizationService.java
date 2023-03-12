@@ -9,7 +9,7 @@ import odata.neo.java.core.Models.Tokens.Token;
 import odata.neo.java.core.Models.Tokens.TokenType;
 import odata.neo.java.core.Models.Tokens.Exceptions.NullOTokenQueryException;
 
-public class TokenizationService extends ITokenizationService {
+public class TokenizationService extends BaseTokenizationService {
     
     
     private final char[] separatorChars = new char[] { '\'', ' ', '=', '\\' };

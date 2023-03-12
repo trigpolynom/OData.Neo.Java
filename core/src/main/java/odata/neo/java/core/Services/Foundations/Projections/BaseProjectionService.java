@@ -8,7 +8,7 @@ import odata.neo.java.core.Models.ProjectedTokens.Exceptions.FailedProjectedToke
 import odata.neo.java.core.Models.ProjectedTokens.Exceptions.InvalidProjectedTokenRawValueException;
 import odata.neo.java.core.Models.ProjectedTokens.Exceptions.NullProjectedTokenException;
 
-public abstract class IProjectionService {
+public abstract class BaseProjectionService {
 
     public abstract ProjectedToken[] projectTokens(ProjectedToken[] projectedTokens) throws FailedProjectedTokenServiceException;
 

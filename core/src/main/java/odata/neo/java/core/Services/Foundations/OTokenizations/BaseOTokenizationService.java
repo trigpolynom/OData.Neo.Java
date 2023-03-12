@@ -4,7 +4,7 @@ import odata.neo.java.core.Models.OTokens.OToken;
 import odata.neo.java.core.Models.OTokens.Exceptions.FailedOTokenServiceException;
 import odata.neo.java.core.Models.OTokens.Exceptions.NullOTokensException;
 
-public abstract class IOTokenizationService {
+public abstract class BaseOTokenizationService {
 
     public abstract OToken oTokenize(OToken[] oTokens) throws FailedOTokenServiceException;
 
