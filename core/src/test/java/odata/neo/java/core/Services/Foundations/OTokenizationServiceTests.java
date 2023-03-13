@@ -3,6 +3,7 @@ package odata.neo.java.core.Services.Foundations;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.olingo.netty.server.api.ODataNetty;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -25,11 +26,11 @@ public class OTokenizationServiceTests {
             new OToken("Name", null, ProjectedTokenType.Property, null)
         };
 
-        OToken expectedToken = new OToken(null, OTokenType.Root, null, new ArrayList<>(null)
-         {
-            new OToken("$select", OTokenType.Select, ProjectedTokenType.Keyword, null)
-    
-        });
+        List<OToken> childrenOfexpectedToken = new ArrayList<>();
+
+        childrenOfexpectedToken.add(new OToken("harold", OTokenType.Property, ProjectedTokenType.Property, null));
+
+        OToken expectedToken = new OToken(null, OTokenType.Root, null, childrenOfexpectedToken);
     
 
     }
