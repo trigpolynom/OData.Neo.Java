@@ -1,5 +1,7 @@
 package odata.neo.java.core.Services.Foundations;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import odata.neo.java.core.Models.OTokens.OToken;
 import odata.neo.java.core.Models.OTokens.OTokenType;
+import odata.neo.java.core.Models.OTokens.Exceptions.FailedOTokenServiceException;
 import odata.neo.java.core.Models.ProjectedTokens.ProjectedTokenType;
 import odata.neo.java.core.Services.Foundations.OTokenizations.OTokenizationService;
 
@@ -16,7 +19,7 @@ import odata.neo.java.core.Services.Foundations.OTokenizations.OTokenizationServ
 public class OTokenizationServiceTests {
 
     @Test
-    public void shouldOTokenize() {
+    public void shouldOTokenize() throws FailedOTokenServiceException {
 
         OTokenizationService oTokenizationService = new OTokenizationService();
 
@@ -27,10 +30,19 @@ public class OTokenizationServiceTests {
         };
 
         List<OToken> childrenOfexpectedToken = new ArrayList<>();
+        List<OToken> childrenOfchildren = new ArrayList<>();
 
-        childrenOfexpectedToken.add(new OToken("harold", OTokenType.Property, ProjectedTokenType.Property, null));
+        childrenOfchildren.add(new OToken("Name", OTokenType.Property, ProjectedTokenType.Property, null));
+        childrenOfexpectedToken.add(new OToken("$select", OTokenType.Select, ProjectedTokenType.Keyword, childrenOfchildren));
 
         OToken expectedToken = new OToken(null, OTokenType.Root, null, childrenOfexpectedToken);
+
+        OToken[] inputTokens = unidentifiedOTokens;
+
+
+        OToken actualToken = oTokenizationService.oTokenize(inputTokens);
+
+        assertTrue(actualToken.children != null);
     
 
     }
