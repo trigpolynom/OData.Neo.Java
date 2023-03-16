@@ -1,11 +1,11 @@
-package odata.neo.java.core.Models.OAST;
+package odata.neo.java.core.Models.OParseTree;
 
 import java.util.List;
 
 import odata.neo.java.core.Models.OTokens.OToken;
 import odata.neo.java.core.Models.OTokens.OTokenType;
 
-public class OAst {
+public class OParseTree {
     
     public OTokenType type;
 

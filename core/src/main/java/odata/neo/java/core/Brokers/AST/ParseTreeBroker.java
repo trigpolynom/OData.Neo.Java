@@ -5,18 +5,18 @@ import java.util.concurrent.CompletableFuture;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import odata.neo.java.core.Models.OAST.OAst;
+import odata.neo.java.core.Models.OParseTree.OParseTree;
 
-public class AstBroker extends BaseAbstractAstBroker {
+public class ParseTreeBroker extends BaseParseTreeBroker {
 
     @Override
-    public CompletableFuture<String> generateAstJSONAsync(OAst oAst) throws JsonProcessingException {
+    public CompletableFuture<String> generateAstJSONAsync(OParseTree OParseTree) throws JsonProcessingException {
         
         CompletableFuture<String> futureString = new CompletableFuture<>();
         
         ObjectMapper mapper = new ObjectMapper();
 
-        String astJson = mapper.writeValueAsString(oAst);
+        String astJson = mapper.writeValueAsString(OParseTree);
 
         futureString.complete(astJson);
 
