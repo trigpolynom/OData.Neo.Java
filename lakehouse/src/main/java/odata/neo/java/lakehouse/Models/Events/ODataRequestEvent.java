@@ -2,7 +2,7 @@ package odata.neo.java.lakehouse.Models.Events;
 
 import odata.neo.java.core.Models.Requests.ODataRequest;
 
-public class ODataRequestEvent {
+public class ODataRequestEvent implements BaseEvent {
 
     private ODataRequest request;
 

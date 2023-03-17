@@ -2,7 +2,7 @@ package odata.neo.java.lakehouse.Models.Events;
 
 import odata.neo.java.core.Models.Responses.ODataResponses.ODataResponse;
 
-public class ODataResponseEvent {
+public class ODataResponseEvent implements BaseEvent {
 
     private ODataResponse response;
 
