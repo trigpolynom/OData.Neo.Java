@@ -1,0 +1,3 @@
+rootProject.name = 'odata.neo.java'
+include 'core'
+includ 'lakehouse'
