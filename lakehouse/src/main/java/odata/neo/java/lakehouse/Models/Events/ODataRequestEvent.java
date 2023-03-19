@@ -14,5 +14,10 @@ public class ODataRequestEvent implements BaseEvent {
         return request;
     }
 
+    @Override
+    public String getType() {
+        return "ODataRequest";
+    }
+
     
 }

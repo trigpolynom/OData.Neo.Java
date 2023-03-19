@@ -14,6 +14,11 @@ public class ODataResponseEvent implements BaseEvent {
         return response;
     }
 
+    @Override
+    public String getType() {
+       return "ODataResponse";
+    }
+
     
     
 }

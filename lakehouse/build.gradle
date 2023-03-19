@@ -6,16 +6,21 @@ plugins {
 
 group = 'odata.neo.java'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+sourceCompatibility = '11'
 
 repositories {
 	mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter:2.7.9'
+	implementation 'org.springframework.boot:spring-boot-starter-websocket:2.7.9'
+	implementation 'org.springframework.boot:spring-boot-starter-websocket:2.7.9'
+	implementation 'org.springframework:spring-messaging:5.3.15'
+	implementation 'org.springframework:spring-websocket:5.3.15'
 	implementation project(':core')
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.7.9'
+	testImplementation 'org.mockito:mockito-core:5.2.0'
 }
 
 tasks.named('test') {

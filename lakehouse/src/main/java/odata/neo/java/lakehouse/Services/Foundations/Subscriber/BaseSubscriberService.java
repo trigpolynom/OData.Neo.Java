@@ -1,12 +1,10 @@
 package odata.neo.java.lakehouse.Services.Foundations.Subscriber;
 
-import odata.neo.java.lakehouse.Models.Subscribers.Subscriber;
+import odata.neo.java.lakehouse.Models.Events.BaseEvent;
+import odata.neo.java.lakehouse.Models.Messages.BaseMessage;
 
 public abstract class BaseSubscriberService<T> {
 
-    public abstract void subscribe(Subscriber subscriber, T event);
-    public abstract void update(T event);
-    public abstract void unsubscribe(Subscriber subscriber, T event);
-    
+    public abstract void update(BaseEvent event, BaseMessage message);
     
 }
