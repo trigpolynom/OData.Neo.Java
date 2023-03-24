@@ -1,28 +1,49 @@
 package odata.neo.java.lakehouse.Configuration.TestSubscribers;
 
-import java.util.concurrent.atomic.AtomicBoolean;
+import java.io.IOException;
 
-import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import odata.neo.java.core.Models.Requests.ODataRequest;
+import odata.neo.java.lakehouse.Brokers.Events.EventListener;
+import odata.neo.java.lakehouse.Models.Events.BaseEvent;
+import odata.neo.java.lakehouse.Models.Events.ODataRequestEvent;
 import odata.neo.java.lakehouse.Models.Messages.BaseMessage;
 import odata.neo.java.lakehouse.Models.Subscribers.Subscriber;
 
-@Component
-public class TestSubscriber extends Subscriber {
+@RestController
+@RequestMapping("/test-subscriber")
+public class TestSubscriber extends Subscriber implements EventListener {
 
-    private final AtomicBoolean messageReceived = new AtomicBoolean(false);
+    private String lastReceivedUpdate;
 
     public TestSubscriber() {
-        super("test-client", "test-event", "localhost");
+        super("1", "Test", "http://localhost:8080/test-subscriber/receive-updates");
     }
 
-    public void receiveMessage(BaseMessage message) {
-        System.out.println("Test client received message: " + message.getContent());
-        messageReceived.set(true);
+    @PostMapping("/receive-updates")
+    public void receiveUpdates(@RequestBody String updates) {
+        lastReceivedUpdate = updates;
+        // Process the updates received from the Lakehouse
+        System.out.println("Updates received: " + updates);
     }
 
-    public boolean isMessageReceived() {
-        return messageReceived.get();
+    public String getLastReceivedUpdate() {
+        return lastReceivedUpdate;
     }
-    
+
+    @Override
+    public void onEvent(BaseEvent event, BaseMessage message) {
+        if (event instanceof ODataRequestEvent) {
+            ODataRequest request = ((ODataRequestEvent) event).getRequest();
+            try {
+                receiveUpdates(request.getReader().readLine());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
