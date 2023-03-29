@@ -4,3 +4,6 @@ project(':core').projectDir = file('core')
 
 include ':lakehouse'
 project(':lakehouse').projectDir = file('lakehouse')
+
+include ':edm'
+project(':edm').projectDir = file('edm')
