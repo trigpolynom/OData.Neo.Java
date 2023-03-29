@@ -1,9 +1,2 @@
 rootProject.name = 'odata.neo.java'
-include ':core'
-project(':core').projectDir = file('core')
-
-include ':lakehouse'
-project(':lakehouse').projectDir = file('lakehouse')
-
-include ':edm'
-project(':edm').projectDir = file('edm')
+include 'core', 'edm', 'lakehouse'

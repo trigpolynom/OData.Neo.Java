@@ -1,0 +1,16 @@
+// Root build.gradle
+subprojects {
+    apply plugin: 'java'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        testImplementation 'junit:junit:4.13.1'
+    }
+}
+
+task clean(type: Delete) {
+    delete subprojects*.buildDir
+}

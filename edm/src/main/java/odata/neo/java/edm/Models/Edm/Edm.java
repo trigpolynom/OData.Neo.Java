@@ -1,3 +1,7 @@
+package odata.neo.java.edm.Models.Edm;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Edm {
 

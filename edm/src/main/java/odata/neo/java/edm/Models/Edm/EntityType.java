@@ -1,3 +1,8 @@
+package odata.neo.java.edm.Models.Edm;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class EntityType {
     
     private String name;
