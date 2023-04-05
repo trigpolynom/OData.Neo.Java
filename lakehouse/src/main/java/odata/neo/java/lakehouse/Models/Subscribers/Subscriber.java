@@ -4,12 +4,12 @@ public class Subscriber {
 
     private String id;
     private String type;
-    private String target;
+    private String callbackUrl;
 
-    public Subscriber(String id, String type, String target) {
+    public Subscriber(String id, String type, String callbackUrl) {
         this.id = id;
         this.type = type;
-        this.target = target;
+        this.callbackUrl = callbackUrl;
     }
 
     public String getId() {
@@ -28,13 +28,16 @@ public class Subscriber {
         this.type = type;
     }
 
-    public String getTarget() {
-        return target;
+ 
+    public String getCallbackUrl() {
+        return callbackUrl;
     }
 
-    public void setTarget(String target) {
-        this.target = target;
+    public void setCallbackUrl(String callbackUrl) {
+        this.callbackUrl = callbackUrl;
     }
 
+
+    
 
 }

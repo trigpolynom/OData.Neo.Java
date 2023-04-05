@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.client.RestTemplate;
+
 import odata.neo.java.lakehouse.Models.Events.BaseEvent;
 import odata.neo.java.lakehouse.Models.Messages.BaseMessage;
 import odata.neo.java.lakehouse.Models.Subscribers.Subscriber;
@@ -33,9 +35,10 @@ public class EventBroker extends BaseEventBroker {
     public void notifySubscribers(BaseEvent event, BaseMessage message) throws IOException {
         List<Subscriber> eventSubscribers = subscribers.get(event);
         if (eventSubscribers != null) {
+            RestTemplate restTemplate = new RestTemplate();
             for (Subscriber subscriber : eventSubscribers) {
                 if (subscriber instanceof EventListener) {
-                    ((EventListener) subscriber).onEvent(event, message);
+                    restTemplate.postForLocation(subscriber.getCallbackUrl(), message.getContent());
                 }
             }
         }
