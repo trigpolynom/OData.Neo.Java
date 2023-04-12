@@ -16,6 +16,19 @@ import odata.neo.java.lakehouse.Models.Subscribers.Subscriber;
 
 public class EventBroker extends BaseEventBroker {
 
+
+    private RestTemplate restTemplate;
+
+    public void setRestTemplate(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+
+    public RestTemplate getRestTemplate() {
+        return restTemplate;
+    }
+
+
+
     private final Map<BaseEvent, List<Subscriber>> subscribers = new HashMap<>();
 
     @Override
@@ -35,7 +48,6 @@ public class EventBroker extends BaseEventBroker {
     public void notifySubscribers(BaseEvent event, BaseMessage message) throws IOException {
         List<Subscriber> eventSubscribers = subscribers.get(event);
         if (eventSubscribers != null) {
-            RestTemplate restTemplate = new RestTemplate();
             for (Subscriber subscriber : eventSubscribers) {
                 if (subscriber instanceof EventListener) {
                     restTemplate.postForLocation(subscriber.getCallbackUrl(), message.getContent());
@@ -43,5 +55,6 @@ public class EventBroker extends BaseEventBroker {
             }
         }
     }
+
     
 }

@@ -1,6 +1,7 @@
 package odata.neo.java.lakehouse.Configuration.TestSubscribers;
 
 import java.io.IOException;
+import java.net.URI;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,7 +22,7 @@ public class TestSubscriber extends Subscriber implements EventListener {
     private String lastReceivedUpdate;
 
     public TestSubscriber() {
-        super("1", "Test", "http://localhost:8080/test-subscriber/receive-updates");
+        super("1", "Test", URI.create("http://localhost:8080/test-subscriber/receive-updates"));
     }
 
     @PostMapping("/receive-updates")

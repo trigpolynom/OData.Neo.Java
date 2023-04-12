@@ -1,16 +1,37 @@
-// Root build.gradle
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    // dependencies {
+    //     classpath("org.springframework.boot:spring-boot-gradle-plugin:2.4.4")
+    // }
+}
+
 subprojects {
     apply plugin: 'java'
+    apply plugin: 'maven-publish'
+
+    group 'odata.neo.java'
+    version '0.0.1-SNAPSHOT'
 
     repositories {
         mavenCentral()
     }
 
     dependencies {
-        testImplementation 'junit:junit:4.13.1'
+        testImplementation 'junit:junit:4.12'
     }
-}
 
-task clean(type: Delete) {
-    delete subprojects*.buildDir
+    java {
+        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_11
+    }
+
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                from components.java
+            }
+        }
+    }
 }

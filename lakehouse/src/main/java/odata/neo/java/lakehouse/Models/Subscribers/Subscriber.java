@@ -1,12 +1,14 @@
 package odata.neo.java.lakehouse.Models.Subscribers;
 
+import java.net.URI;
+
 public class Subscriber {
 
     private String id;
     private String type;
-    private String callbackUrl;
+    private URI callbackUrl;
 
-    public Subscriber(String id, String type, String callbackUrl) {
+    public Subscriber(String id, String type, URI callbackUrl) {
         this.id = id;
         this.type = type;
         this.callbackUrl = callbackUrl;
@@ -29,11 +31,11 @@ public class Subscriber {
     }
 
  
-    public String getCallbackUrl() {
+    public URI getCallbackUrl() {
         return callbackUrl;
     }
 
-    public void setCallbackUrl(String callbackUrl) {
+    public void setCallbackUrl(URI callbackUrl) {
         this.callbackUrl = callbackUrl;
     }
 
