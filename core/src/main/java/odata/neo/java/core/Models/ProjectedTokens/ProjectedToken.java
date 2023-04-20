@@ -4,9 +4,14 @@ import odata.neo.java.core.Models.Tokens.TokenType;
 
 public class ProjectedToken {
 
-    public String rawValue;
-    public TokenType tokenType;
-    public ProjectedTokenType projectedTokenType;
+    private String rawValue;
+    private TokenType tokenType;
+    private ProjectedTokenType projectedTokenType;
+
+    public ProjectedToken(String rawValue) {
+        this.rawValue = rawValue;
+    }
+
     public String getRawValue() {
         return rawValue;
     }
@@ -25,7 +30,5 @@ public class ProjectedToken {
     public void setProjectedTokenType(ProjectedTokenType projectedTokenType) {
         this.projectedTokenType = projectedTokenType;
     }
-
-    
-    
 }
+

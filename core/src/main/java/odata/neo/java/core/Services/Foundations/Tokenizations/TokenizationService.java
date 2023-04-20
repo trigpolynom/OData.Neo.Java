@@ -12,7 +12,7 @@ import odata.neo.java.core.Models.Tokens.Exceptions.NullOTokenQueryException;
 public class TokenizationService extends BaseTokenizationService {
     
     
-    private final char[] separatorChars = new char[] { '\'', ' ', '=', '\\' };
+    private final char[] separatorChars = new char[] { '\'', ' ', '=', '\\', '(', ')' };
 
     
     public Token[] tokenize(String rawQuery) throws NullOTokenQueryException {
@@ -26,21 +26,21 @@ public class TokenizationService extends BaseTokenizationService {
         String remainingRawQuery = rawQuery;
         TokenType oTokenType = null;
         List<Token> tokenList = new ArrayList<>();
-
+    
         while (remainingRawQuery.length() > 0) {
             String returnValue = remainingRawQuery;
             String nextRemainingValue = "";
-
+    
             Integer index = StringUtils.indexOfAny(remainingRawQuery, separatorChars);
-
+    
             if (index != -1) {
                 int rangeIndex = getRangeIndex(index);
                 returnValue = remainingRawQuery.substring(0, rangeIndex);
                 nextRemainingValue = remainingRawQuery.substring(rangeIndex, remainingRawQuery.length());
             }
-
+    
             remainingRawQuery = nextRemainingValue;
-
+    
             for (char c : separatorChars) {
                 for (char k : returnValue.toCharArray()) {
                     if (c == k) {
@@ -48,9 +48,9 @@ public class TokenizationService extends BaseTokenizationService {
                     }
                 }
             }
-
+    
             if(oTokenType != TokenType.Separator) {
-                oTokenType =TokenType.Word;
+                oTokenType = TokenType.Word;
             }
             
             tokenList.add(new Token(oTokenType, returnValue));

@@ -5,5 +5,5 @@ public enum OTokenType {
     Unidentified,
     Root,
     Select,
-    Property
+    Property, Entity, Key
 }

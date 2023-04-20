@@ -39,19 +39,16 @@ public class OTokenizationService extends BaseOTokenizationService {
 
 
     private void processTokens(OToken root, OToken[] oTokens) {
-        OToken selectToken = oTokens[0];
-        selectToken.setoTokenType(OTokenType.Select);
-
-        root.getChildren().add(selectToken);
-        selectToken.setChildren(new ArrayList<OToken>());
-
-        List<OToken> tokens = Arrays.stream(oTokens)
-                .skip(1)
-                .filter(token -> token.getProjectedTokenType() != ProjectedTokenType.Equals)
-                .peek(token -> token.setoTokenType(OTokenType.Property))
-                .collect(Collectors.toList());
-
-        selectToken.getChildren().addAll(tokens);
+        OToken entityToken = oTokens[0];
+        entityToken.setoTokenType(OTokenType.Entity);
+        root.getChildren().add(entityToken);
+    
+        if (oTokens.length > 1 && oTokens[1].getProjectedTokenType() == ProjectedTokenType.OpenParenthesis) {
+            OToken keyToken = oTokens[2];
+            keyToken.setoTokenType(OTokenType.Key);
+            entityToken.getChildren().add(keyToken);
+        }
     }
+    
     
 }

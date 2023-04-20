@@ -8,6 +8,6 @@ public enum ProjectedTokenType {
         Property,
         Space,
         Equals,
-        Comma
+        Comma, OpenParenthesis, CloseParenthesis
     
 }
