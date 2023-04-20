@@ -8,6 +8,8 @@ public enum ProjectedTokenType {
         Property,
         Space,
         Equals,
-        Comma, OpenParenthesis, CloseParenthesis
+        Comma, 
+        OpenParenthesis, 
+        CloseParenthesis, Word, Separator, ODataService, Unknown, Entity
     
 }

@@ -12,6 +12,9 @@ public class ProjectedToken {
         this.rawValue = rawValue;
     }
 
+    public ProjectedToken() {
+    }
+
     public String getRawValue() {
         return rawValue;
     }

@@ -16,7 +16,7 @@ public class OTokenizationService extends BaseOTokenizationService {
     public OToken oTokenize(OToken[] oTokens) throws FailedOTokenServiceException {
 
         try {
-        
+
             validateOTokens(oTokens);
 
             OToken root = new OToken();
@@ -33,22 +33,31 @@ public class OTokenizationService extends BaseOTokenizationService {
             throw new FailedOTokenServiceException("Failed otoken service error occurred, contact support");
         }
 
-    
-
     }
 
-
     private void processTokens(OToken root, OToken[] oTokens) {
-        OToken entityToken = oTokens[0];
-        entityToken.setoTokenType(OTokenType.Entity);
-        root.getChildren().add(entityToken);
+        OToken current = root;
+        OToken entityToken = null;
     
-        if (oTokens.length > 1 && oTokens[1].getProjectedTokenType() == ProjectedTokenType.OpenParenthesis) {
-            OToken keyToken = oTokens[2];
-            keyToken.setoTokenType(OTokenType.Key);
-            entityToken.getChildren().add(keyToken);
+        for (int i = 0; i < oTokens.length; i++) {
+            OToken token = oTokens[i];
+            ProjectedTokenType projectedTokenType = token.getProjectedTokenType();
+    
+            if (projectedTokenType == ProjectedTokenType.Entity) {
+                entityToken = token;
+                entityToken.setoTokenType(OTokenType.Entity);
+                current.getChildren().add(entityToken);
+                entityToken.setChildren(new ArrayList<OToken>());
+            } else if (projectedTokenType == ProjectedTokenType.OpenParenthesis) {
+                if (entityToken != null) {
+                    OToken keyToken = oTokens[i + 1];
+                    keyToken.setoTokenType(OTokenType.Key);
+                    entityToken.getChildren().add(keyToken);
+                    i += 2;
+                }
+            }
         }
     }
     
-    
+
 }

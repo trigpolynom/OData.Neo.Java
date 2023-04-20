@@ -4,6 +4,7 @@ public class Token {
     
     public TokenType type;
     public String value;
+    private Token previousToken;
 
     public Token(TokenType type, String value) {
         this.type = type;
@@ -24,5 +25,13 @@ public class Token {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public Token getPreviousToken() {
+        return previousToken;
+    }
+
+    public void setPreviousToken(Token previousToken) {
+        this.previousToken = previousToken;
     }
 }
