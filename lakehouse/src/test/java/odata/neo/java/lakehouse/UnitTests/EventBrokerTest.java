@@ -24,7 +24,7 @@ public class EventBrokerTest {
     public void setUp() {
         eventBroker = new EventBroker();
         restTemplate = Mockito.mock(RestTemplate.class);
-        eventBroker.setRestTemplate(restTemplate);
+        eventBroker.setRestTemplate(null, restTemplate);
     }
 
     @Test

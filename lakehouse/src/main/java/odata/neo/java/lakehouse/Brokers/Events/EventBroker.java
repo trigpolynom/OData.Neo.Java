@@ -8,6 +8,8 @@ import java.util.Map;
 
 import org.springframework.web.client.RestTemplate;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import odata.neo.java.lakehouse.Models.Events.BaseEvent;
 import odata.neo.java.lakehouse.Models.Messages.BaseMessage;
 import odata.neo.java.lakehouse.Models.Subscribers.Subscriber;
@@ -51,7 +53,14 @@ public class EventBroker extends BaseEventBroker {
                 throw new IllegalStateException("RestTemplate not set for the event");
             }
             for (Subscriber subscriber : eventSubscribers) {
-                    restTemplate.postForLocation(subscriber.getCallbackUrl(), message.getContent());
+                Map<String, Object> payload = new HashMap<>();
+                payload.put("eventType", event.getType());
+                payload.put("content", message.getContent());
+    
+                ObjectMapper objectMapper = new ObjectMapper();
+                String jsonString = objectMapper.writeValueAsString(payload);
+    
+                restTemplate.postForLocation(subscriber.getCallbackUrl(), jsonString);
             }
         }
     }
