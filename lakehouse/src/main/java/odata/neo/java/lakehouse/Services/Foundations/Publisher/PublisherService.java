@@ -16,10 +16,11 @@ public class PublisherService extends BasePublisherService {
 
     @Override
     public void publish(BaseEvent event, BaseMessage message) throws IOException {
+        eventBroker.notifySubscribers(event, message);        
+    }
 
-        eventBroker.notifySubscribers(event, message);
-        
-        
+    public EventBroker getEventBroker() {
+        return eventBroker;
     }
     
 }
