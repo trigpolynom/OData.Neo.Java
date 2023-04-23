@@ -16,7 +16,7 @@ public class PublisherService extends BasePublisherService {
 
     @Override
     public void publish(BaseEvent event, BaseMessage message) throws IOException {
-        eventBroker.notifySubscribers(event, message);        
+        eventBroker.publishEvent(event, message);        
     }
 
     public EventBroker getEventBroker() {

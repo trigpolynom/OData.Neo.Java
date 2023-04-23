@@ -40,14 +40,14 @@ public class EventBrokerTest {
         eventBroker.subscribe(subscriber, event);
 
         // Notify the subscribers and verify that the restTemplate is called with the correct callback URL and content
-        eventBroker.notifySubscribers(event, message);
+        eventBroker.publishEvent(event, message);
         verify(restTemplate, times(1)).postForLocation(subscriber.getCallbackUrl(), message.getContent());
 
         // Unsubscribe the subscriber from the event
         eventBroker.unsubscribe(subscriber, event);
 
         // Notify the subscribers again and verify that the restTemplate is not called anymore
-        eventBroker.notifySubscribers(event, message);
+        eventBroker.publishEvent(event, message);
         verify(restTemplate, times(1)).postForLocation(subscriber.getCallbackUrl(), message.getContent());
     }
 }

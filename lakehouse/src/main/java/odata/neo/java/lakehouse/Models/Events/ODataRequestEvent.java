@@ -1,23 +1,22 @@
 package odata.neo.java.lakehouse.Models.Events;
 
-import odata.neo.java.core.Models.Requests.ODataRequest;
+import odata.neo.java.lakehouse.Models.Rest.ODataRestTemplate;
+
 
 public class ODataRequestEvent implements BaseEvent {
 
-    private ODataRequest request;
+    private ODataRestTemplate restTemplate;
 
-    public ODataRequestEvent(ODataRequest request) {
-        this.request = request;
+    public ODataRequestEvent(ODataRestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
     }
 
-    public ODataRequest getRequest() {
-        return request;
+    public ODataRestTemplate getRestTemplate() {
+        return restTemplate;
     }
 
     @Override
     public String getType() {
         return "ODataRequest";
     }
-
-    
 }
