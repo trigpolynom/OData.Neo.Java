@@ -38,6 +38,7 @@ public class OTokenizationService extends BaseOTokenizationService {
     private void processTokens(OToken root, OToken[] oTokens) {
         OToken current = root;
         OToken entityToken = null;
+        OToken queryOptionToken = null;
     
         for (int i = 0; i < oTokens.length; i++) {
             OToken token = oTokens[i];
@@ -47,14 +48,32 @@ public class OTokenizationService extends BaseOTokenizationService {
                 entityToken = token;
                 entityToken.setoTokenType(OTokenType.Entity);
                 current.getChildren().add(entityToken);
-                entityToken.setChildren(new ArrayList<OToken>());
-            } else if (projectedTokenType == ProjectedTokenType.OpenParenthesis) {
-                if (entityToken != null) {
-                    OToken keyToken = oTokens[i + 1];
-                    keyToken.setoTokenType(OTokenType.Key);
-                    entityToken.getChildren().add(keyToken);
-                    i += 2;
+                entityToken.setChildren(new ArrayList<>());
+            } else if (projectedTokenType == ProjectedTokenType.Keyword) {
+                queryOptionToken = token;
+                switch (token.getRawValue()) {
+                    case "$select":
+                        queryOptionToken.setoTokenType(OTokenType.Select);
+                        break;
+                    case "$filter":
+                        queryOptionToken.setoTokenType(OTokenType.Filter);
+                        break;
+                    case "$orderby":
+                        queryOptionToken.setoTokenType(OTokenType.OrderBy);
+                        break;
+                    case "$top":
+                        queryOptionToken.setoTokenType(OTokenType.Top);
+                        break;
+                    case "$skip":
+                        queryOptionToken.setoTokenType(OTokenType.Skip);
+                        break;
                 }
+                if (entityToken != null) {
+                    entityToken.getChildren().add(queryOptionToken);
+                } else {
+                    current.getChildren().add(queryOptionToken);
+                }
+                queryOptionToken.setChildren(new ArrayList<>());
             }
         }
     }

@@ -85,7 +85,30 @@ public class TokenizationServiceTests {
 
         assertTrue(rootToken != null);
 
+    }
 
+
+    @Test
+    void selectOTokenizationTest() throws NullOTokenQueryException, FailedProjectedTokenServiceException, FailedOTokenServiceException {
+
+        TokenizationService tokenizationService = new TokenizationService();
+        ProjectionService projectionService = new ProjectionService();
+        OTokenizationService oTokenizationService = new OTokenizationService();
+
+        String simpleUrl = "localhost:8081/odata/persons?$select=name";
+
+        Token[] tokens = tokenizationService.tokenize(simpleUrl);
+        ProjectedToken[] projectedTokens = projectionService.project(tokens);
+
+        OToken[] oTokens = new OToken[projectedTokens.length];
+        for (int i = 0; i < projectedTokens.length; i++) {
+            oTokens[i] = new OToken();
+            oTokens[i].setRawValue(projectedTokens[i].getRawValue());
+            oTokens[i].setProjectedTokenType(projectedTokens[i].getProjectedTokenType());
+        }
+        OToken rootToken = oTokenizationService.oTokenize(oTokens);
+
+        assertTrue(rootToken != null);
 
     }
     

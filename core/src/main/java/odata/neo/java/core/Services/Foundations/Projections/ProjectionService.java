@@ -21,10 +21,10 @@ public class ProjectionService extends BaseProjectionService {
 
     private ProjectedToken project(Token token, Token previousToken) {
         ProjectedToken projectedToken = new ProjectedToken();
-
+    
         projectedToken.setRawValue(token.getValue());
         projectedToken.setTokenType(token.getType());
-
+    
         switch (token.getType()) {
             case Separator:
                 projectedToken.setProjectedTokenType(getSeparatorProjectedTokenType(token.getValue()));
@@ -39,6 +39,8 @@ public class ProjectionService extends BaseProjectionService {
                     } else {
                         projectedToken.setProjectedTokenType(ProjectedTokenType.Word);
                     }
+                } else if (tokenValue.startsWith("$")) {
+                    projectedToken.setProjectedTokenType(ProjectedTokenType.Keyword);
                 } else {
                     projectedToken.setProjectedTokenType(ProjectedTokenType.Word);
                 }
@@ -46,9 +48,10 @@ public class ProjectionService extends BaseProjectionService {
             default:
                 projectedToken.setProjectedTokenType(ProjectedTokenType.Unknown);
         }
-
+    
         return projectedToken;
     }
+    
 
     
     
